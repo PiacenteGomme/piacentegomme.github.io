@@ -172,12 +172,13 @@
       box-shadow: -20px 0 60px rgba(0,0,0,0.5);
       z-index: 1000;
       transform: translateX(100%);
-      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      visibility: hidden;
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), visibility 0.35s;
       display: flex; flex-direction: column;
       padding: 5.5rem 0 2rem;
       overflow-y: auto;
     }
-    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu.open { visibility: visible; transform: translateX(0); }
     .mobile-menu a {
       color: var(--white);
       font-family: var(--font-display);
@@ -1578,7 +1579,7 @@
     }
 
     /* ─── SEZIONI CHIARE ALTERNATE ────────────────────── */
-    .services, .brands, .chi-siamo, .autonoleggio, .contact {
+    .services, .brands, .officina, .autonoleggio, .reviews {
       --black: #eef0f3;
       --deep: #f6f7f9;
       --carbon: #ffffff;
@@ -1605,20 +1606,61 @@
     .contact .map-frame { border-color: rgba(0,0,0,0.1); }
     .contact .map-frame iframe { filter: grayscale(1); }
 
-    /* ─── FIX CONTRASTO TESTI SU SFONDO CHIARO ────────── */
-    .services .section-title, .brands .section-title, .chi-siamo .section-title,
-    .autonoleggio .section-title, .contact .section-title { color: #16181d; }
-    .services .service-name, .chi-siamo .chi-siamo-text, .chi-siamo .badge-title { color: #16181d; }
-    .services .service-desc, .brands .brands-subtitle, .chi-siamo .chi-siamo-text p,
-    .autonoleggio .section-desc, .contact .contact-value { color: #343a44; }
-    .chi-siamo .chi-siamo-text p strong, .contact .contact-value a { color: #16181d; }
-    .chi-siamo .chi-siamo-quote { color: #2a2f38; }
-    .contact .contact-label, .autonoleggio .count-label { color: #5a616c; }
-    .contact .hours-time, .autonoleggio .count-num, .contact .contact-value { color: #16181d; }
+    .reviews .section-title { color: #16181d; }
+    .reviews .review-card { background: #ffffff; border-color: rgba(0,0,0,0.08); box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
+    .reviews .review-text { color: #343a44; }
+    .reviews .review-name { color: #16181d; }
+    .reviews .review-source { color: #5a616c; }
+    .reviews .rating-count { color: #5a616c; }
+    .reviews .review-avatar { background: #eef0f3; }
+
+    /* ─── STELLE & RATING ben visibili su recensioni chiare ─── */
+    .reviews .review-stars { color: #e8a200; }
+    .reviews .rating-stars { color: #e8a200; }
+    .reviews .rating-score { color: #c8901a; }
+    .reviews .rating-count { color: #5a616c; }
+
+    /* ─── OFFICINA (chiara): titolo nero, label foto bianche ─── */
+    .officina .section-title { color: #16181d; }
+    .officina .section-desc { color: #343a44; }
+    .officina .officina-label .o-title { color: #fff; }
+    .officina .officina-label .o-tag { color: var(--red-bright); }
+  
+/* Aggiustamenti leggibilità sezioni CHIARE: services, brands, officina, autonoleggio, reviews */
+    .services .services-grid { background: rgba(0,0,0,0.09); }
+    .services .service-card { background: var(--deep); }
+    .services .service-card:hover { background: var(--carbon); box-shadow: 0 10px 30px rgba(0,0,0,0.07); }
     .services .service-num { color: rgba(0,0,0,0.07); }
-    .autonoleggio .partner-pill { color: #343a44; }
+    .services .section-title { color: #16181d; }
+    .services .service-name { color: #16181d; }
+    .services .service-desc { color: #343a44; }
+
+    .brands .brand-pill { background: rgba(0,0,0,0.025); border-color: rgba(0,0,0,0.12); }
+    .brands .brand-pill:hover { background: rgba(214,40,40,0.06); border-color: rgba(214,40,40,0.35); }
+    .brands .section-title { color: #16181d; }
+    .brands .brands-subtitle { color: #343a44; }
+
+    .officina .section-title { color: #16181d; }
+    .officina .section-desc { color: #343a44; }
+    .officina .officina-item { box-shadow: 0 12px 35px rgba(0,0,0,0.12); }
+    .officina .officina-label .o-title { color: #fff; }
+
+    .autonoleggio .section-title { color: #16181d; }
+    .autonoleggio .section-desc { color: #343a44; }
+    .autonoleggio .partner-pill { border-color: rgba(0,0,0,0.1); color: #343a44; }
     .autonoleggio .partner-pill span { color: #5a616c; }
-    .chi-siamo .team-photo-badge .badge-sub { color: var(--red-bright); }
+    .autonoleggio .partner-pill:hover { border-color: rgba(201,168,76,0.5); background: rgba(201,168,76,0.06); }
+    .autonoleggio .rental-cta-bar { background: rgba(214,40,40,0.05); border-color: rgba(214,40,40,0.25); }
+    .autonoleggio .count-label { color: #5a616c; }
+    .autonoleggio .count-num { color: var(--gold); }
+
+    .reviews .section-title { color: #16181d; }
+    .reviews .review-card { background: #ffffff; border-color: rgba(0,0,0,0.08); box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
+    .reviews .review-text { color: #343a44; }
+    .reviews .review-name { color: #16181d; }
+    .reviews .review-source { color: #5a616c; }
+    .reviews .rating-count { color: #5a616c; }
+    .reviews .review-avatar { background: #eef0f3; }
   </style>
 </head>
 <body>
@@ -1892,94 +1934,6 @@
   </div>
 </section>
 
-<!-- REVIEWS -->
-<section class="reviews" id="recensioni">
-  <div class="section-inner">
-    <div class="reviews-header">
-      <div>
-        <div class="section-label">Recensioni clienti</div>
-        <h2 class="section-title">COSA DICONO<br>DI NOI</h2>
-      </div>
-      <div class="rating-big">
-        <div class="rating-score" data-count="4.8" data-decimals="1">0</div>
-        <div>
-          <div class="rating-stars">★★★★★</div>
-          <div class="rating-count">Valutazione media su Google Maps</div>
-          <div class="rating-count">Pompei (NA)</div>
-        </div>
-      </div>
-    </div>
-    <div class="reviews-grid reveal">
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Professionali, veloci e onesti. Mi hanno consigliato la gomma giusta senza cercare di vendermi qualcosa di più costoso. Tornerò sicuramente!"</p>
-        <div class="review-author">
-          <div class="review-avatar">M</div>
-          <div>
-            <div class="review-name">Marco T.</div>
-            <div class="review-source">📍 Google Maps</div>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Foratura improvvisa: sono arrivati con l'officina mobile in meno di 30 minuti. Prezzi corretti e personale gentilissimo. Servizio eccellente!"</p>
-        <div class="review-author">
-          <div class="review-avatar">S</div>
-          <div>
-            <div class="review-name">Sara L.</div>
-            <div class="review-source">📍 Google Maps</div>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Ho portato la mia moto per le gomme Metzeler. Montaggio perfetto, equilibratura impeccabile. Si vede che sono veri specialisti del settore."</p>
-        <div class="review-author">
-          <div class="review-avatar">A</div>
-          <div>
-            <div class="review-name">Antonio R.</div>
-            <div class="review-source">📍 Google Maps</div>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Cambio gomme stagionali fatto in tempi record, con hotel pneumatici incluso. Organizzatissimi e disponibili. Il gommista di fiducia che cercavo."</p>
-        <div class="review-author">
-          <div class="review-avatar">C</div>
-          <div>
-            <div class="review-name">Carmine F.</div>
-            <div class="review-source">📍 Google Maps</div>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Convergenza fatta con strumenti di precisione, macchina che ora va dritta come una freccia. Prezzo equo e senza brutte sorprese. Consigliato!"</p>
-        <div class="review-author">
-          <div class="review-avatar">L</div>
-          <div>
-            <div class="review-name">Luigi V.</div>
-            <div class="review-source">📍 Google Maps</div>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Che professionalità! Piacente Gomme è il migliore di Pompei senza dubbio. Clienti da anni e mai un problema. Consigliatissimi a tutti."</p>
-        <div class="review-author">
-          <div class="review-avatar">R</div>
-          <div>
-            <div class="review-name">Rosaria M.</div>
-            <div class="review-source">📍 Google Maps</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- TIRE DETAIL STRIP -->
 <div class="tire-detail-strip">
   <div class="tire-strip-inner">
@@ -2052,9 +2006,8 @@
         <h2 class="section-title">VENIAMO<br>DA TE</h2>
         <p class="section-desc">Non devi portare la tua auto da noi. Il nostro servizio di assistenza su strada è attrezzato per intervenire direttamente dove sei tu.</p>
         <ul class="mobile-feature-list">
-          <li>Cambio gomme a domicilio</li>
           <li>Riparazione foratura in loco</li>
-          <li>Montaggio d'emergenza H24</li>
+          <li>Montaggio d'emergenza</li>
           <li>Copertura tutta l'area di Pompei e dintorni</li>
           <li>Intervento rapido garantito</li>
         </ul>
@@ -2166,6 +2119,94 @@
         </ul>
         <div style="margin-top:2rem;">
           <a href="tel:+390818637995" class="btn-primary">Chiedi info al negozio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="recensioni">
+  <div class="section-inner">
+    <div class="reviews-header">
+      <div>
+        <div class="section-label">Recensioni clienti</div>
+        <h2 class="section-title">COSA DICONO<br>DI NOI</h2>
+      </div>
+      <div class="rating-big">
+        <div class="rating-score" data-count="4.8" data-decimals="1">0</div>
+        <div>
+          <div class="rating-stars">★★★★★</div>
+          <div class="rating-count">Valutazione media su Google Maps</div>
+          <div class="rating-count">Pompei (NA)</div>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-grid reveal">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Professionali, veloci e onesti. Mi hanno consigliato la gomma giusta senza cercare di vendermi qualcosa di più costoso. Tornerò sicuramente!"</p>
+        <div class="review-author">
+          <div class="review-avatar">M</div>
+          <div>
+            <div class="review-name">Marco T.</div>
+            <div class="review-source">📍 Google Maps</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Foratura improvvisa: sono arrivati con l'officina mobile in meno di 30 minuti. Prezzi corretti e personale gentilissimo. Servizio eccellente!"</p>
+        <div class="review-author">
+          <div class="review-avatar">S</div>
+          <div>
+            <div class="review-name">Sara L.</div>
+            <div class="review-source">📍 Google Maps</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ho portato la mia moto per le gomme Metzeler. Montaggio perfetto, equilibratura impeccabile. Si vede che sono veri specialisti del settore."</p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div>
+            <div class="review-name">Antonio R.</div>
+            <div class="review-source">📍 Google Maps</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Cambio gomme stagionali fatto in tempi record, con hotel pneumatici incluso. Organizzatissimi e disponibili. Il gommista di fiducia che cercavo."</p>
+        <div class="review-author">
+          <div class="review-avatar">C</div>
+          <div>
+            <div class="review-name">Carmine F.</div>
+            <div class="review-source">📍 Google Maps</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Convergenza fatta con strumenti di precisione, macchina che ora va dritta come una freccia. Prezzo equo e senza brutte sorprese. Consigliato!"</p>
+        <div class="review-author">
+          <div class="review-avatar">L</div>
+          <div>
+            <div class="review-name">Luigi V.</div>
+            <div class="review-source">📍 Google Maps</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Che professionalità! Piacente Gomme è il migliore di Pompei senza dubbio. Clienti da anni e mai un problema. Consigliatissimi a tutti."</p>
+        <div class="review-author">
+          <div class="review-avatar">R</div>
+          <div>
+            <div class="review-name">Rosaria M.</div>
+            <div class="review-source">📍 Google Maps</div>
+          </div>
         </div>
       </div>
     </div>
